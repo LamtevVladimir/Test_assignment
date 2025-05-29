@@ -68,6 +68,19 @@ class HelloWorld {
                     }
                 }
             }
+            else if (original.Contains(domains[C]))
+            {
+              for (i = 0; i < new_addresses[C].Length; i++)
+              {
+                if (original.IndexOf(new_addresses[C][i]) == -1)
+                {
+                  if (original[original.Length - 1] != ':')
+                    original = original + ";";
+                  original = original + " " + new_addresses[C][i];
+                }
+              }
+            }
+            
         }
         
         Console.WriteLine(original);
