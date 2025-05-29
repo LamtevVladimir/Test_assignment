@@ -49,23 +49,29 @@ class HelloWorld {
                     {
                         pos = original.IndexOf(new_addresses[C][i]);
                         pos_end = pos + new_addresses[C][i].Length + 1;
-                        original = original.Substring(0, pos) + original.Substring(pos_end, original.Length - pos_end);
-                        if (original[pos] == ' ')
+                        //Console.WriteLine(pos + " " + pos_end + " " + original.Length);
+                        //Console.WriteLine(original);
+                        if (pos_end - 1 == original.Length)
+                        {
+                          original = original.Substring(0, pos-2);
+                        }
+                        else
+                        {
+                          original = original.Substring(0, pos) + original.Substring(pos_end, original.Length - pos_end);
+                          if (original[pos] == ' ')
                             original = original.Substring(0, pos) + original.Substring(pos + 1, original.Length - pos - 1);
+                        }
+                        if ((pos == original.IndexOf("Copy:")) && (original[pos - 2] != ':'))
+                          original = original.Substring(0,pos-2) + original.Substring(pos-1, original.Length - pos + 1);
+                        
+                        
                     }
                 }
             }
         }
+        
         Console.WriteLine(original);
         original = Console.ReadLine();
     }
-
-    
-    
-    
-    
-    
-    
-    
   }
 }
