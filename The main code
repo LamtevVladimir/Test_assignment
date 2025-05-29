@@ -1,0 +1,71 @@
+using System;
+class HelloWorld {
+  static void Main() {
+    Console.WriteLine("Hello World");
+    
+    //Задаём начальные данные
+    string[] domains  = new string [3]{"tbank.ru", "alfa.com", "vtb.ru"};
+    
+    string[][] exceptions = new string [3][];
+    exceptions[0] = new string[1]{"i.ivanov@tbank.ru"};
+    exceptions[1] = new string[2]{"s.sergeev@alfa.com", "a.andreev@alfa.com"};
+    exceptions[2] = new string[1]{"None"};
+    
+    string[][] new_addresses = new string[3][];
+    new_addresses[0] = new string [2]{"t.tbankovich@tbank.ru", "v.veronickovna@tbank.ru"};
+    new_addresses[1] = new string [1]{"v.vladislavovich@alfa.com"};
+    new_addresses[2] = new string [1]{"a.aleksandrov@vtb.ru"};
+    
+    
+    Console.WriteLine(new_addresses[0][1].Contains("ghjkjhg"));
+    string a = "gfghji";
+    Console.WriteLine(a.Substring(3,2));
+    
+    string original = Console.ReadLine();
+    int C = 0;
+    int i = 0;
+    int f = 0;
+    int pos = 0;
+    int pos_end = 0;
+    while (original != "stop")
+    {
+        //Идём по каждому выделенному домену поотдельности
+        for (C = 0; C < domains.Length; C++)
+        {
+            //Ищем Исключения
+            f = 0;
+            for (i = 0; i < exceptions[C].Length; i++)
+            {
+                if (original.Contains(exceptions[C][i]))
+                    f = 1;
+            }
+            
+            // в зависимости от нахождения исключений либо удаляем, либо пытемся добавить
+            if (f != 0)
+            {
+                for (i = 0; i < new_addresses[C].Length; i++)
+                {
+                    while (original.Contains(new_addresses[C][i]))
+                    {
+                        pos = original.IndexOf(new_addresses[C][i]);
+                        pos_end = pos + new_addresses[C][i].Length + 1;
+                        original = original.Substring(0, pos) + original.Substring(pos_end, original.Length - pos_end);
+                        if (original[pos] == ' ')
+                            original = original.Substring(0, pos) + original.Substring(pos + 1, original.Length - pos - 1);
+                    }
+                }
+            }
+        }
+        Console.WriteLine(original);
+        original = Console.ReadLine();
+    }
+
+    
+    
+    
+    
+    
+    
+    
+  }
+}
