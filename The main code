@@ -15,11 +15,7 @@ class HelloWorld {
     new_addresses[0] = new string [2]{"t.tbankovich@tbank.ru", "v.veronickovna@tbank.ru"};
     new_addresses[1] = new string [1]{"v.vladislavovich@alfa.com"};
     new_addresses[2] = new string [1]{"a.aleksandrov@vtb.ru"};
-    
-    
-    Console.WriteLine(new_addresses[0][1].Contains("ghjkjhg"));
-    string a = "gfghji";
-    Console.WriteLine(a.Substring(3,2));
+   
     
     string original = Console.ReadLine();
     int C = 0;
